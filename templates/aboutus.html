@@ -1,0 +1,46 @@
+<!--@Ben Cummins-->
+<!--Features a description about the company, information and a general summary of website.-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Viewport added to allow responsive web design-->
+        <title>About Us</title>
+        <link link rel="StyleSheet" href="{{ url_for('static', filename='style.css') }}" type="text/css"> <!--Link to the css stylesheet.-->
+    </head>
+    <body>
+        <div class="row">
+            <nav> <!--Start of navbar.-->
+                <ul class="navbar"> 
+                    <li><a href="/">Home</a></li>
+                    <li><a href="rooms">Rooms</a></li>
+                    <li><a href="locations">Locations</a></li>
+                    <li><a href="booking">Book Now</a></li>
+                    <li><a class="active" href="aboutus">About Us</a></li>
+                    {% if session['logged_in'] %}
+                    <li><a href="account">My account</a></li><!--If the user is logged in, allow them to access their account management-->
+                    <li><a href="logout">Logout</a></li>
+                    {% else %}
+                    <!-- If the user isnt logged, allow them them to use these routes-->
+                    <li><a href="register">Register</a></li>
+                    <li><a href="login">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav> <!--End of navbar.-->
+        </div>
+        <header>
+            <h1>About us</h1>
+        </header>
+        <div class="box">
+            <p1>
+                Horizon Hotels is a company dedicated to supplying its customers with the best hotel booking experience for hotels in England. 
+                We deliver high quality rooms at only the best locations to ensure you,the customer, have the best holiday possible. </p1>
+            <p2><br><br>
+                    With a range of 15 locations across England, hotels with 3 different room sizes at fair prices ensure 
+                that your holiday will be the most memorable experience you have had.
+            </p2>
+            <p3><br><br>
+                All images have been used under free use from Unsplash.
+            </p3>
+        </div>
+    </body>
+</html>

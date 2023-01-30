@@ -1,0 +1,48 @@
+<!--@Ben Cummins-->
+<!--Booking success page showing the details of the booking to the user with the payment details-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Viewport added to allow responsive web design-->
+        <title>Booking details</title>
+        <link link rel="StyleSheet" href="{{ url_for('static', filename='style.css') }}" type="text/css"> <!--Link to the css stylesheet.-->
+    </head>
+    <body>
+        <div class="row">
+            <div class="row">
+                <nav> <!--Start of navbar.-->
+                    <ul class="navbar"> 
+                        <li><a href="/">Home</a></li>
+                        <li><a href="rooms">Rooms</a></li>
+                        <li><a href="locations">Locations</a></li>
+                        <li><a class="active" href="booking">Book Now</a></li>
+                        <li><a href="aboutus">About Us</a></li>
+                        {% if session['logged_in'] %}
+                        <li><a href="account">My account</a></li><!--If the user is logged in, allow them to access their account management-->
+                        <li><a href="logout">Logout</a></li>
+                        {% else %}
+                        <!-- If the user isnt logged, allow them them to use these routes-->
+                        <li><a href="register">Register</a></li>
+                        <li><a href="login">Login</a></li>
+                        {% endif %}
+                    </ul>
+                </nav> <!--End of navbar.-->
+        </div>
+        <h1>Thank you for your booking!</h1>
+        <div class="row box formadjust">
+            <div class="col-t-12"> <!--Printing the user's booking details back to the user-->
+                <h2>Your booking details</h2>
+                Booking ID: {{resultset[8]}} <br>
+                Location: {{resultset[1]}}<br>
+                Check-In Date: {{resultset[2]}}<br>
+                Check-Out Date: {{resultset[3]}}<br>
+                Number of nights: {{resultset[6]}}<br>
+                Number of guests: {{resultset[4]}}<br>
+                Room Type: {{resultset[0]}}<br>
+                Total Fare: {{resultset[5]}}<br>
+                Currency: {{currency}} <br>
+                Payment details: Card ending with {{cardnumber}}<br>
+            </div>
+        </div>
+    </body>
+</html>

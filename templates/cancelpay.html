@@ -1,0 +1,53 @@
+<!--@Ben Cummins-->
+<!--Confirms the amount a user has to pay when their booking is cancelled-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Viewport added to allow responsive web design-->
+        <title>Booking Cancellation</title>
+        <link link rel="StyleSheet" href="{{ url_for('static', filename='style.css') }}" type="text/css"> <!--Link to the css stylesheet.-->
+    </head>
+    <body>
+        <div class="row">
+            <nav> <!--Start of navbar.-->
+                <ul class="navbar"> 
+                    <li><a class="/">Home</a></li>
+                    <li><a href="rooms">Rooms</a></li>
+                    <li><a href="locations">Locations</a></li>
+                    <li><a href="booking">Book Now</a></li>
+                    <li><a href="aboutus">About Us</a></li>
+                    {% if session['logged_in'] %}
+                    <li><a class="active" href="account">My account</a></li><!--If the user is logged in, allow them to access their account management-->
+                    <li><a href="logout">Logout</a></li>
+                    {% else %}
+                    <!-- If the user isnt logged, allow them them to use these routes-->
+                    <li><a href="register">Register</a></li>
+                    <li><a href="login">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav> <!--End of navbar.-->
+        </div>
+    <header>
+        <h1>Cancel a booking</h1>
+    </header>
+    <body>
+        <div >
+            <form class="row box" action="/cancelsuccess" method="POST"> <!--Creating a form to enter the details of the new hotel-->
+                <input type="hidden" id="bookingcid" name="bookingcid" value="{{bookingsel}}"> 
+                <p>Selected Booking ID: {{bookingsel}}</p>
+                {% if bookingcharge==100 %}
+                <p>This booking will be fully refunded to you. <br>
+                Payment will be refunded to card ending in {{cardNo}}</p>
+                {% elif bookingcharge==50 %}
+                <p>Due to late cancellation, this cancellation will cost 50% of the total booking price.<br>
+                Payment will be refunded to card ending in card ending in {{cardNo}}.</p>
+                {% elif bookingcharge==0 %}
+                <p>Due to late cancellation, this booking is unable to be refunded.<br></p>
+                {% endif %}
+                <p>Please confirm your cancellation </p>
+                <!--Submit button overriding style rules-->
+                <input style="color:black;" type="submit" id="submit" value="Confirm Cancellation" name="submit">
+            </form>
+        </div>
+    </body>
+</html>

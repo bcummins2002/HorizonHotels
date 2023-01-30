@@ -1,0 +1,61 @@
+<!--@Ben Cummins-->
+<!--Allows users to view all their bookings in a table including past bookings-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Viewport added to allow responsive web design-->
+        <title>Your Bookings</title>
+        <link link rel="StyleSheet" href="{{ url_for('static', filename='style.css') }}" type="text/css"> <!--Link to the css stylesheet.-->
+    </head>
+    <body>
+        <div class="row">
+            <nav> <!--Start of navbar.-->
+                <ul class="navbar"> 
+                    <li><a class="/">Home</a></li>
+                    <li><a href="rooms">Rooms</a></li>
+                    <li><a href="locations">Locations</a></li>
+                    <li><a href="booking">Book Now</a></li>
+                    <li><a href="aboutus">About Us</a></li>
+                    {% if session['logged_in'] %}
+                    <li><a class="active" href="account">My account</a></li><!--If the user is logged in, allow them to access their account management-->
+                    <li><a href="logout">Logout</a></li>
+                    {% else %}
+                    <!-- If the user isnt logged, allow them them to use these routes-->
+                    <li><a href="register">Register</a></li>
+                    <li><a href="login">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav> <!--End of navbar.-->
+        </div>
+    <header>
+        <h1>Your bookings</h1>
+    </header>
+    <body>
+        <div class="row box"> <!--Creating a form to enter the details of the new hotel-->
+            <table class="col-t-12">
+                <thead>
+                    <tr>
+                        <th>Booking ID: </th>
+                        <th>Location: </th>
+                        <th>Total Fare: </th>
+                        <th>Currency Paid: </th>
+                        <th>Booking Start Date: </th>
+                        <th>Booking End Date: </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for detail in booking_list %}
+                    <tr>
+                        <td>{{ detail[0] }}</td>
+                        <td>{{ detail[1] }}</td>
+                        <td>{{ detail[3] }}</td>
+                        <td>{{ detail[2] }}</td>
+                        <td>{{ detail[4] }}</td>
+                        <td>{{ detail[5] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<!--@Ben Cummins-->
+<!--Allows admin users to remove hotels from the database-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Viewport added to allow responsive web design-->
+        <title>Remove Hotel</title>
+        <link link rel="StyleSheet" href="{{ url_for('static', filename='style.css') }}" type="text/css"> <!--Link to the css stylesheet.-->
+    </head>
+    <body>
+        <div class="row">
+            <nav> <!--Start of navbar.-->
+                <ul class="navbar"> 
+                    <li><a class="/">Home</a></li>
+                    <li><a href="rooms">Rooms</a></li>
+                    <li><a href="locations">Locations</a></li>
+                    <li><a href="booking">Book Now</a></li>
+                    <li><a href="aboutus">About Us</a></li>
+                    {% if session['logged_in'] %}
+                    <li><a class="active" href="account">My account</a></li><!--If the user is logged in, allow them to access their account management-->
+                    <li><a href="logout">Logout</a></li>
+                    {% else %}
+                    <!-- If the user isnt logged, allow them them to use these routes-->
+                    <li><a href="register">Register</a></li>
+                    <li><a href="login">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav> <!--End of navbar.-->
+        </div>
+    <header>
+        <h1>Remove A Hotel</h1>
+    </header>
+    <body>
+        <div>
+            <form class="row box formadjust" action="/removehotelconfirm" method="POST"> <!--Creating a form to enter the details of the new hotel-->
+                <p>Please select the hotel location you would like to remove</p>
+                <div class="col-t-12">
+                    <!--Form to select the hotel you want to remove-->
+                    <label for="selectedHotel">Hotel Location:</label><br/>
+                    <select style= "color: black;"id="selectedHotel" name="selectedHotel"> <!--Inline style rule to make the selected text black-->
+                        {% for city in hotelLoc %}
+                            <option value="{{city}}"> {{city}} </option>
+                        {% endfor %}
+                    </select>
+                    <!--Submit button overiding style rules-->
+                    <input style="color:black;" type="submit" id="submit" name="submit">
+                </div>
+            </form>
+        </div>
+    </body>

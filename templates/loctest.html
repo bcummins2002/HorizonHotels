@@ -1,0 +1,45 @@
+<!--@Ben Cummins-->
+<!--A page to view locations, similar layout to rooms but with the locaitons we have. Links in pictures and infinte scroll-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Viewport to set screen size to be the width of the screen being sued for responsive design-->
+        <title>Locations</title> <!--Title of the tab-->
+        <link rel="StyleSheet" href="{{ url_for('static', filename='style.css') }}" type="text/css"> <!--Link to the css stylesheet.-->
+    </head>
+    <body>
+        <div class="row"><!-- Start of row for the navbar-->
+            <div class="row">
+                <nav> <!--Start of navbar.-->
+                    <ul class="navbar"> 
+                        <li><a href="/">Home</a></li>
+                        <li><a href="rooms">Rooms</a></li>
+                        <li><a class="active" href="locations">Locations</a></li>
+                        <li><a href="booking">Book Now</a></li>
+                        <li><a href="aboutus">About Us</a></li>
+                        {% if session['logged_in'] %}
+                        <li><a href="account">My account</a></li><!--If the user is logged in, allow them to access their account management-->
+                        <li><a href="logout">Logout</a></li>
+                        {% else %}
+                        <!-- If the user isnt logged, allow them them to use these routes-->
+                        <li><a href="register">Register</a></li>
+                        <li><a href="login">Login</a></li>
+                        {% endif %}
+                    </ul>
+                </nav> <!--End of navbar.-->
+        </div><!--Finish the navbar row-->
+        <header>
+            <h1>Our Locations</h1>
+        </header>
+        <section> <!-- Start of section for location images-->
+            {% for city in locs %}
+            <div class="col-4 col-t-6 col-l-3"> <!--New collumn-->
+                <div class="loccontainer">
+                    <img class="locimg" src="../static/images/{{city}}/thum.jpg" alt="A picture of {{city}}">
+                    <h2>{{city}}</h2>
+                </div>
+            </div>
+            {% endfor %} 
+        </section>
+    </body>
+</html>

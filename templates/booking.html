@@ -1,0 +1,84 @@
+<!--@Ben Cummins-->
+<!--Features the forms required for booking and has a list of all the rooms, locations etc.-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--Viewport added to allow responsive web design-->
+        <title>Booking</title>
+        <link rel="StyleSheet" href="{{ url_for('static', filename='style.css') }}" type="text/css"> <!--Link to the css stylesheet.-->
+        <script type="text/javascript" src="{{ url_for('static',filename='scripts.js') }}"></script> <!--Link to external JS-->
+    </head>
+    <body>
+        <div class="row">
+            <nav> <!--Start of navbar.-->
+                <ul class="navbar"> 
+                    <li><a href="/">Home</a></li>
+                    <li><a href="rooms">Rooms</a></li>
+                    <li><a href="locations">Locations</a></li>
+                    <li><a class="active" href="booking">Book Now</a></li>
+                    <li><a href="aboutus">About Us</a></li>
+                    {% if session['logged_in'] %}
+                    <li><a href="account">My account</a></li><!--If the user is logged in, allow them to access their account management-->
+                    <li><a href="logout">Logout</a></li>
+                    {% else %}
+                    <!-- If the user isnt logged, allow them them to use these routes-->
+                    <li><a href="register">Register</a></li>
+                    <li><a href="login">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav> <!--End of navbar.-->
+        </div>
+        <header>
+            {{error}}
+            <h1>Book your stay!</h1>
+        </header>
+        <div class="formadjust box">
+            <div class="row">
+            <!--Form section to book the location-->
+                <form onsubmit="return guestsPerRoom()" action="/startbooking" method="POST">
+                    <div class="col-6 col-t-12 col-12">
+                        <!--Creating a form to choose the start date of the holiday-->
+                        <label for="sdate">Check In Date: </label><br/>
+                        <input type="date" id="sdate" name="sdate" onchange="return checkinDate()" required/>
+                    </div>
+                    <div class="col-6 col-t-12 col-12">
+                        <!--Creating a form to choose the end date of the holiday-->
+                        <label for="edate">Check Out Date: </label><br/>
+                        <input type="date" id="edate" name="edate" onchange="return checkoutDate()" required/>
+                    </div>
+                    <div class="col-6 col-t-12 col-12">
+                        <!--Creating a drop down form to select the hotel location-->
+                        <label for="loc">Location: </label><br/>
+                        <select style="color: black;"id="loc" name="loc" required> <!--Inline style rule to make the selected text black-->
+                        {% for city in hotelLoc %}
+                            <option value="{{city}}"> {{city}} </option>
+                        {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-6 col-t-12 col-12">
+                        <!--Creating a form asking user what currency they would like to pay in-->
+                        <label for="currency">Currency: </label><br/>
+                        <select id="currency" name="currency" required>
+                            <option value="GBP">GBP</option>
+                            <option value="EUR">EUR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                    </div>
+                    <div class="col-6 col-t-12 col-12"> <!--Drop down to select what room type you would like to book-->
+                        <label for="roomtype">Room Type: </label><br/>
+                        <select id="roomtype" name="roomtype" required>
+                            <option value="Standard">Standard</option>
+                            <option value="Double">Double</option>
+                            <option value="Family">Family</option>
+                    </select>
+                    </div>
+                    <div class="col-6 col-t-12 col-12"> <!--Asking user for input on how many guests they would like to stay-->
+                        <label for="noofguests">Number Of Guests: </label><br/>
+                        <input type="number" id="noofguests" name="noofguests" required> 
+                    </div>
+                    <input style="color:black;" type="submit" id="submit" name="submit" > <!--Overriding the overall text color using an line style rule-->
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

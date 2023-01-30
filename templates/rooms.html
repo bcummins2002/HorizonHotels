@@ -1,0 +1,65 @@
+<!--@Ben Cummins-->
+<!--Page for viewing the different rooms on offer. Simple page with links to booking sites embedded in images. Infinte scroll with modern look.-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--Viewport added to allow responsive web design-->
+        <title>Rooms</title>
+        <link link rel="StyleSheet" href="{{ url_for('static', filename='style.css') }}" type="text/css"> <!--Link to the css stylesheet.-->
+    </head>
+    <body>
+        <div class="row">
+            <div class="row">
+                <nav> <!--Start of navbar.-->
+                    <ul class="navbar"> 
+                        <li><a href="/">Home</a></li>
+                        <li><a class="active" href="rooms">Rooms</a></li>
+                        <li><a href="locations">Locations</a></li>
+                        <li><a href="booking">Book Now</a></li>
+                        <li><a href="aboutus">About Us</a></li>
+                        {% if session['logged_in'] %}
+                        <li><a href="account">My account</a></li><!--If the user is logged in, allow them to access their account management-->
+                        <li><a href="logout">Logout</a></li>
+                        {% else %}
+                        <!-- If the user isnt logged, allow them them to use these routes-->
+                        <li><a href="register">Register</a></li>
+                        <li><a href="login">Login</a></li>
+                        {% endif %}
+                    </ul>
+                </nav> <!--End of navbar.-->
+        </div>
+        <header>
+            <h1>Our Rooms</h1>
+        </header>
+        <!--Start of the main body-->
+        <div class="row center hidden">
+            <p>We offer three different room sizes, all of which are guranteed to make your stay memorable.<br><!--Breaking the header into two lines for ease to read.-->
+                Whether you are looking for a workspace away from home or a holiday to relax, we have the room for you.</p>
+            </div>
+        </div>
+        <div class="row"><!--Start of the rooms row-->
+            <div class="col-l-4 col-t-12"><!--New collumn-->
+                <div class="loccontainer">
+                    <img class="locimg" src="../static/images/standard1.jpg" alt="A small hotel room with a double bed">
+                    <h2>Our Standard Room</h2>
+                    <p>Affordable, comfortable .Perfect for the work travel or for the solo traveller seeking adventure.</p>
+                </div>
+            </div>
+            <div class="col-l-4 col-t-12"> <!--New collumn-->
+                <div class="loccontainer">
+                    <img class="locimg" src="../static/images/double1.jpg" alt="A spacious hotel room with a king bed">
+                    <h2>Our Double Room</h2>
+                    <p>A little more luxury with a king size bed and more space. Perfect for a couple.</p>
+                </div>
+            </div>
+            <div class="col-l-4 col-t-12"><!--New collumn-->
+                <div class="loccontainer">
+                    <img class="locimg" src="../static/images/family1.jpg" alt="A hotel room with a two singles, part of the family room">
+                    <h2>Our family room</h2>
+                    <p>All the luxury of double room but with an attached room with 2 single beds for the daring family.</p>
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<!--@Ben Cummins-->
+<!--Account page for user to manage various parts of their bookings or accounts-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Viewport added to allow responsive web design-->
+        <title>My Account</title>
+        <link link rel="StyleSheet" href="{{ url_for('static', filename='style.css') }}" type="text/css"> <!--Link to the css stylesheet.-->
+    </head>
+    <body>
+        <div class="row">
+            <nav> <!--Start of navbar.-->
+                <ul class="navbar"> 
+                    <li><a href="/">Home</a></li>
+                    <li><a href="rooms">Rooms</a></li>
+                    <li><a href="locations">Locations</a></li>
+                    <li><a href="booking">Book Now</a></li>
+                    <li><a href="aboutus">About Us</a></li>
+                    {% if session['logged_in'] %}
+                    <li><a class="active" href="account">My account</a></li><!--If the user is logged in, allow them to access their account management-->
+                    <li><a href="logout">Logout</a></li>
+                    {% else %}
+                    <!-- If the user isnt logged, allow them them to use these routes-->
+                    <li><a href="register">Register</a></li>
+                    <li><a href="login">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav> <!--End of navbar.-->
+        </div>
+    <header>
+        <h1>Manage your account</h1>
+    </header>
+    <body>
+        <div class="row">
+            <div class="box formadjust">
+                {{error}}
+                {{message}}
+                {% if session['userType'] == 'adm' %}
+                <h3>Admin Features</h3>
+                <a href="newhotel">Add a new hotel</a><br/>
+                <a href="removehotel">Remove a hotel</a><br/>
+                <a href="report">Generate a report</a><br/>
+                {% endif %}
+                <h3>User Features</h3>
+                <a href="viewbookings">View your bookings</a><br/>
+                <a href="cancelbooking">Cancel a booking</a><br/>
+                <a href="changepassword">Change your password</a><br/>
+            </div>
+        </div>
+    </body>

@@ -1,0 +1,170 @@
+*{
+    font-family:"Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif; /*Changing the font*/
+    box-sizing: border-box; /*Property for responsive grid view */
+    color: white;
+}
+[class*="col-"]{ /* Mobile first design in CSS grid. Changes all elements to width 100% on small devices. */
+    float: left;
+    padding:1%;
+    width: 100%;
+}
+
+@media only screen and (min-width: 600px){ /*Breakpoint for devices such as tablets and large phones.*/
+    .col-t-1 {width: 8.33%}
+    .col-t-2 {width: 16.66%}
+    .col-t-3 {width: 25%}
+    .col-t-4 {width: 33.33%}
+    .col-t-5 {width: 41.66%}
+    .col-t-6 {width: 50%}
+    .col-t-7 {width: 58.33%}
+    .col-t-8 {width: 66.66%}
+    .col-t-9 {width: 75%}
+    .col-t-10 {width: 83.33%}
+    .col-t-11 {width: 91.66%}
+    .col-t-12 {width: 100%}
+}
+
+@media only screen and (min-width: 768px){ /*Breakpoint for larger screens. Defines collumn sizes for small laptops/ large tablets screens.*/
+    .col-1 {width: 8.33%}
+    .col-2 {width: 16.66%}
+    .col-3 {width: 25%}
+    .col-4 {width: 33.33%}
+    .col-5 {width: 41.66%}
+    .col-6 {width: 50%}
+    .col-7 {width: 58.33%}
+    .col-8 {width: 66.66%}
+    .col-9 {width: 75%}
+    .col-10 {width: 83.33%}
+    .col-11 {width: 91.66%}
+    .col-12 {width: 100%} 
+    ul.navbar li /*Floating navbar elements to allow responsiveness when screen is larger than a phone.*/
+    { 
+        float:left;
+    }
+
+}
+
+@media only screen and (min-width: 992px){ /*Breakpoint for standard size monitor. Defines for laptops and desktops. */
+    .col-d-1 {width: 8.33%}
+    .col-d-2 {width: 16.66%}
+    .col-d-3 {width: 25%}
+    .col-d-4 {width: 33.33%}
+    .col-d-5 {width: 41.66%}
+    .col-d-6 {width: 50%}
+    .col-d-7 {width: 58.33%}
+    .col-d-8 {width: 66.66%}
+    .col-d-9 {width: 75%}
+    .col-d-10 {width: 83.33%}
+    .col-d-11 {width: 91.66%}
+    .col-d-12 {width: 100%}
+}
+
+@media only screen and (min-width: 1200px){ /*Breakpoint for large screens such as big laptops or desktop monitors.*/
+    .col-l-1 {width: 8.33%}
+    .col-l-2 {width: 16.66%}
+    .col-l-3 {width: 25%}
+    .col-l-4 {width: 33.33%}
+    .col-l-5 {width: 41.66%}
+    .col-l-6 {width: 50%}
+    .col-l-7 {width: 58.33%}
+    .col-l-8 {width: 66.66%}
+    .col-l-9 {width: 75%}
+    .col-l-10 {width: 83.33%}
+    .col-l-11 {width: 91.66%}
+    .col-l-12 {width: 100%} 
+    .formadjust{ /*Adjusting the form font size for larger screens */
+        font-size:22px;
+    }
+    input{ /*Adjusting the input font size for larger screens */
+        font-size:22px;
+    }
+    select{ /*Adjusting the select font size for larger screens */
+        font-size:22px;
+    }
+}
+option{ /*Styles all elements of select to be black */
+    color:black;
+}
+body{ /*Body tag for consistency across webpages*/
+    margin: 0px;
+    height:auto; /*Ensure the background images covers the entire webpage */
+}
+input{ /*Creating a universal to ensure all forms input text color is black.*/
+    color:black;
+}
+
+select{ /*Ensuring the color of the dropdown forms is black universally */
+    color: black;
+}
+
+html{
+    background-image: url(images/backgroundimg.jpg); /*Adding a background image*/
+    background-repeat:no-repeat; /*Ensuring the background image doesnt repeat on larger screen sizes*/
+    background-size:cover; /*Ensuring background covers the entire webpage */
+    background-position: center;/*Ensures background image is centered */
+    height: 100%; /*Set height to make background image cover entire screen */
+    background-attachment: fixed;/*Ensures you can scroll the page with the background image remaining */
+}
+.row::after{ /*Clear floats after each row */
+    content: "";
+    clear: both;
+    display: table;
+}
+
+h1{ /* Rule for h1 to maintain consistency across all webpages.*/
+    text-align: center;
+    margin-top: 1%;
+}
+
+.center{ /*Class for centering elements */
+    text-align: center;
+}
+
+.navbar{  /* Main navbar style rule */
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.445);
+    width: 100%;
+
+}
+ul.navbar li a{ /*Links for navbar style*/
+    float:left;
+    display: block;
+    padding: 10px 20px ;
+    color: #C6C5B9;
+    text-decoration: none;
+    text-align: center;
+    width:100%; /*Set width for responsive nav bar on mobile */
+}
+.active{ /*Changes colour of active link on nav bar */
+    background-color: rgba(0, 0, 0, 0.603);
+}
+li a:hover{ /*Changes colour of navbar element when you hover over it */
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.loccontainer{ /*Class to center text and add a border on the locations page */
+    text-align:center;
+    border-style:solid;
+    margin:1px;
+    max-height:auto;
+    background-color:rgba(0, 0, 0, 0.705);
+}
+.locimg{ /*Class for centering images on locations page */
+    max-width:100%;
+    height:auto;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:1%;
+}
+.floatright{ /*Float elements right*/
+    float:right;
+}
+.box{/*Creating a class for any text on the screen for a universal look*/
+    margin:5%;
+    border-style: solid;
+    background-color:rgba(0, 0, 0, 0.705);
+    padding:5%;
+    text-align: center;
+}

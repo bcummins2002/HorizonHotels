@@ -1,0 +1,39 @@
+<!--@Ben Cummins-->
+<!--Homepage for the website. Features an image carousel and moves for a simple but responsive webpage.Modern but simple.-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--Viewport added to allow responsive web design-->
+        <title>Home</title>
+        <link rel="StyleSheet" href="{{ url_for('static', filename='style.css') }}" type="text/css"> <!--Link to the css stylesheet.-->
+    </head>
+    <body>
+        <div class="row">
+            <nav> <!--Start of navbar.-->
+                <ul class="navbar"> 
+                    <li><a class="active" href="/">Home</a></li>
+                    <li><a href="rooms">Rooms</a></li>
+                    <li><a href="locations">Locations</a></li>
+                    <li><a href="booking">Book Now</a></li>
+                    <li><a href="aboutus">About Us</a></li>
+                    {% if session['logged_in'] %}
+                    <li><a href="account">My account</a></li><!--If the user is logged in, allow them to access their account management-->
+                    <li><a href="logout">Logout</a></li>
+                    {% else %}
+                    <!-- If the user isn't logged, allow them them to use these routes-->
+                    <li><a href="register">Register</a></li>
+                    <li><a href="login">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav> <!--End of navbar.-->
+        </div>
+        <header>
+            <h1>Welcome to Horizon Hotels.</h1>
+        </header>
+        <div class="row box">
+            <p>We offer a wide range of hotels around England.<br><br>
+            Ranging from beautiful and historic locations to the metropolitan hustle and bustle of London.<br><br>
+            We promise to have the hotel the suits your needs.</p>
+        </div> 
+    </body>
+</html>

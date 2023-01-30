@@ -1,0 +1,69 @@
+<!--@Ben Cummins-->
+<!--Payment page for the booking process-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Viewport added to allow responsive web design-->
+        <title>Booking Confirmation</title>
+        <link link rel="StyleSheet" href="{{ url_for('static', filename='style.css') }}" type="text/css"> <!--Link to the css stylesheet.-->
+    </head>
+    <body>
+        <div class="row">
+            <nav> <!--Start of navbar.-->
+                <ul class="navbar"> 
+                    <li><a href="/">Home</a></li>
+                    <li><a href="rooms">Rooms</a></li>
+                    <li><a href="locations">Locations</a></li>
+                    <li><a class="active" href="booking">Book Now</a></li>
+                    <li><a href="aboutus">About Us</a></li>
+                    {% if session['logged_in'] %}
+                    <li><a href="account">My account</a></li><!--If the user is logged in, allow them to access their account management-->
+                    <li><a href="logout">Logout</a></li>
+                    {% else %}
+                    <!-- If the user isnt logged, allow them them to use these routes-->
+                    <li><a href="register">Register</a></li>
+                    <li><a href="login">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav> <!--End of navbar.-->
+        </div>
+
+        <div class="row box ">
+            <h2>Please check your booking details and enter your payment details</h2>
+            <form class="formadjust" action="/bookingpayment" method="POST">   
+                Selected City : {{lookupdata[0]}} <br>
+                <input type="hidden" name="hotelLoc" id="hotelLoc" value="{{lookupdata[0]}}"/>       
+                Check-in Date : {{lookupdata[1]}} <br>
+                <input type="hidden" name="checkind" id="checkind" value="{{lookupdata[1]}}"/>
+                Check-out Date : {{lookupdata[2]}} <br>
+                <input type="hidden" name="checkoutd" id="checkoutd" value="{{lookupdata[2]}}"/>
+                No. of guests : {{lookupdata[3]}} <br>
+                <input type="hidden" name="noofguests" id="noofguests" value="{{lookupdata[3]}}"/>
+                No. of nights : {{lookupdata[4]}} <br>
+                <input type="hidden" name="noofnights" id="noofnights" value="{{lookupdata[4]}}"/>
+                Room Type: {{lookupdata[5]}} <br>
+                <input type="hidden" name="roomtype" id="roomtype" value="{{lookupdata[5]}}"/>
+                Total Fare: {{lookupdata[7]}} <br>
+                <input type="hidden" name="totalfare" id="totalfare" value="{{lookupdata[7]}}"/>
+                Currency: {{lookupdata[6]}}<br><br>
+                <input type="hidden" name="currency" id="currency" value="{{lookupdata[6]}}"/>
+                Rooms Available: {{hotelCapacity}}
+                <h3>Payment Details</h3>
+                <div class="col-6 col-t-12 col-12">
+                    <!--Creating a card number input type using telephone number input type and forcing a pattern-->
+                    <label for="cardNo">Card Number: </label><br>
+                    <input type="tel" id="cardNo" name="cardNo" pattern="[0-9]{12}" placeholder="Card Number" > 
+                </div>
+                <div class="col-6 col-t-12 col-12">
+                    <!--Creating a card expiry input to simulate a payment-->
+                    <label for="cardNo">Expiry Date: </label><br>
+                    <input type="text" id="expiry" name="expiry" pattern="[0-9/]{5}" placeholder="MM/YY"> 
+                </div>
+                <div class="col-6 col-t-12 col-12">
+                    <!--Creating a card security number input field-->
+                    <label for="cardNo">CVV Number: </label> <br>
+                    <input type="number" id="cvv" name="cvv" pattern="[0-9]{3}" placeholder="CVV"> 
+                </div>
+                <input style="color:black;" type="submit" id="submit" name="submit"> <!--Overriding the overall text color using an line style rule-->
+            </form>
+        </div>
